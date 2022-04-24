@@ -14,24 +14,25 @@
                     <Grid.ColumnDefinitions>
 
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="McDataGrid" ItemsSource="{Binding Source={StaticResource viewableStaff}}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="406" Width="784" Margin="12,0,21,0"/>
+                    <DataGrid x:Name="McDataGrid" ItemsSource="{Binding Source={StaticResource viewableStaff}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </Grid>
             </TabItem>
             <TabItem Header="STAFF" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Width="44">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="151*"/>
-                        <ColumnDefinition Width="283*"/>
-                        <ColumnDefinition Width="342*"/>
+                        <ColumnDefinition Width="153*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="230*"/>
+                        <ColumnDefinition Width="346*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="1">
+                    <StackPanel Grid.Column="0" Margin="1,1,1,1">
                         <ListBox x:Name="StaffListBox" ItemsSource="{Binding Source={StaticResource viewableStaff}}" 
                                  BorderBrush="White"
                                  Margin="1,1,1,0" 
                                  Background="White"
                                  Width="150"/>
                     </StackPanel>
-                    <StackPanel Grid.Column="2" x:Name="staffDetails" Orientation="Vertical">
+                    <StackPanel Grid.Column="2" x:Name="staffDetails" Orientation="Vertical" Grid.ColumnSpan="2" Margin="230,0,0,0">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="ID: "/>
@@ -81,10 +82,10 @@
                     <Button x:Name="addStaff" 
                             Content="Submit"
                             HorizontalAlignment="Left"
-                            Margin="188,262,0,0"
+                            Margin="133,262,0,0"
                             VerticalAlignment="Top"
                             Width="75"
-                            Grid.Column="1"
+                            Grid.Column="2"
                             Click="addStaff_Click"
                             RenderTransformOrigin="0.493,2.953"/>
                     <Label Content="ID" 
@@ -94,10 +95,10 @@
                            VerticalAlignment="Top" 
                            RenderTransformOrigin="-1.021,-0.567"/>
                     <TextBox x:Name="textBox_id" 
-                             Grid.Column="1" 
+                             Grid.Column="2" 
                              HorizontalAlignment="Left" 
                              Height="21" 
-                             Margin="82.2,197,0,0" 
+                             Margin="27,197,0,0" 
                              TextWrapping="Wrap" 
                              VerticalAlignment="Top"
                              Width="80"/>
@@ -106,12 +107,12 @@
                              HorizontalAlignment="Left" 
                              Margin="9,228,0,0" 
                              VerticalAlignment="Top" 
-                             RenderTransformOrigin="3.491,-1.435"/>
+                             RenderTransformOrigin="3.491,-1.435" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="textBox_first" 
-                             Grid.Column="1" 
+                             Grid.Column="2" 
                              HorizontalAlignment="Left" 
                              Height="26" 
-                             Margin="82,228,0,0" 
+                             Margin="27,228,0,0" 
                              TextWrapping="Wrap" 
                              VerticalAlignment="Top" 
                              Width="80"/>
@@ -119,12 +120,12 @@
                            Grid.Column="1" 
                            HorizontalAlignment="Left" 
                            Margin="11,259,0,0" 
-                           VerticalAlignment="Top"/>
+                           VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="textBox_last" 
-                             Grid.Column="1" 
+                             Grid.Column="2" 
                              HorizontalAlignment="Left" 
                              Height="26" 
-                             Margin="82,259,0,0" 
+                             Margin="27,259,0,0" 
                              TextWrapping="Wrap" 
                              VerticalAlignment="Top" 
                              Width="80"/>

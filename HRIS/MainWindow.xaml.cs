@@ -86,6 +86,11 @@ namespace HRIS
             }
             return dtEmployees;
         }
+
+        private void McDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
         //private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    if (e.AddedItems.Count > 0)
