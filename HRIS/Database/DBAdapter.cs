@@ -2,12 +2,18 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
 
 namespace HRIS.Database
 {
     class DBAdapter
     {
+        //private static bool reportingErrors = false;
+
 
         private const string db = "hris";
         private const string user = "kit206g14a";
@@ -15,6 +21,13 @@ namespace HRIS.Database
         private const string server = "alacritas.cis.utas.edu.au";
 
         private static MySqlConnection conn = null;
+
+        // Convert string to enum
+        public static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
 
         private static MySqlConnection GetConnection()
         {
@@ -50,17 +63,58 @@ namespace HRIS.Database
 
 
 
-        // Convert string to enum
-        public static T ParseEnum<T>(string value)
-        {
-            return (T)Enum.Parse(typeof(T), value, true);
-        }
+       
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id">Staff id of unit coordinator</param>
         /// <returns>List of units coordinated by given staff member</returns>
+        /// 
+
+        public static List<Staff> LoadAll()
+        {
+            List<Staff> staff = new List<Staff>();
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select id, given_name, family_name from researcher", conn);
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    //Note that in your assignment you will need to inspect the *type* of the
+                    //employee/researcher before deciding which kind of concrete class to create.
+                    staff.Add(new Staff { ID = rdr.GetInt32(0), GivenName = rdr.GetString(1), FamilyName = rdr.GetString(2) });
+                }
+            }
+            catch (MySqlException e)
+            {
+                //ReportError("loading staff", e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return staff;
+        }
+
+
+
+
         public static List<Unit> GetUnitDetails(int id)
         {
             MySqlDataReader rdr = null;
@@ -295,6 +349,18 @@ namespace HRIS.Database
 
 
         }
+
+
+       /* private static void ReportError(string msg, Exception e)
+        {
+            if (reportingErrors)
+            {
+                MessageBox.Show("An error occurred while " + msg + ". Try again later.\n\nError Details:\n" + e,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+       */
+
     }
 }
 

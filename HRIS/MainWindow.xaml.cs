@@ -36,6 +36,7 @@ namespace HRIS
             if (e.AddedItems.Count > 0)
             {
                 staffDetails.DataContext = DBAdapter.GetFullStaffDetails((Staff)e.AddedItems[0]);
+
             }
         }
 
